@@ -1,0 +1,66 @@
+﻿@model IEnumerable<BrowserGame.Models.Persons>
+
+@{
+    ViewData["Title"] = "Персонажи";
+}
+
+<h1>Персонажи</h1>
+
+<p>
+    <a asp-action="Create">Создать нового персонажа</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Имя
+            </th>
+            <th>
+                Возраст
+            </th>
+            <th>
+                Сила
+            </th>
+            <th>
+                Здоровье
+            </th>
+            <th>
+                Защита
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+
+@{int count = 0; }
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Age)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Strength)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Health)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Defense)
+            </td>
+            
+            @if (count > 1)
+            {
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.PersonsID">Редактировать</a> |
+                <a asp-action="Details" asp-route-id="@item.PersonsID">Подробнее</a> |
+                <a asp-action="Delete" asp-route-id="@item.PersonsID">Удалить</a>
+            </td>
+            }
+        </tr>
+        count++;
+}
+    </tbody>
+</table>

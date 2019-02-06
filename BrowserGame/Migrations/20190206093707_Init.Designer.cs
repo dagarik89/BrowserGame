@@ -10,7 +10,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace BrowserGame.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20190206074842_Init")]
+    [Migration("20190206093707_Init")]
     partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -20,6 +20,26 @@ namespace BrowserGame.Migrations
                 .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn)
                 .HasAnnotation("ProductVersion", "2.2.1-servicing-10028")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
+
+            modelBuilder.Entity("BrowserGame.Models.Persons", b =>
+                {
+                    b.Property<int>("PersonsID")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("Age");
+
+                    b.Property<int>("Defense");
+
+                    b.Property<int>("Health");
+
+                    b.Property<string>("Name");
+
+                    b.Property<int>("Strength");
+
+                    b.HasKey("PersonsID");
+
+                    b.ToTable("Persons");
+                });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
