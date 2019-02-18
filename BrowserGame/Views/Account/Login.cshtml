@@ -1,0 +1,38 @@
+﻿@model BrowserGame.ViewModels.LoginViewModel
+
+@{
+    ViewData["Title"] = "Вход в приложение";
+}
+
+<h1>@ViewData["Title"]</h1>
+<div class="row">
+    <div class="col-md-4">
+        <section>
+            <form method="post" asp-controller="Account" asp-action="Login"
+                  asp-route-returnUrl="@Model.ReturnUrl">
+                <div asp-validation-summary="ModelOnly"></div>
+                <div>
+                    <label asp-for="Email"></label><br />
+                    <input asp-for="Email" />
+                    <span asp-validation-for="Email"></span>
+                </div>
+                <div>
+                    <label asp-for="Password"></label><br />
+                    <input asp-for="Password" />
+                    <span asp-validation-for="Password"></span>
+                </div>
+                <div>
+                    <label asp-for="RememberMe"></label><br />
+                    <input asp-for="RememberMe" />
+                </div>
+                <div>
+                    <input type="submit" value="Войти" />
+                </div>
+            </form>
+            <br />
+            <form action="\Identity\Account\Login">
+                <button class="btn btn-primary" name="provider">Выбрать другой сервис для входа (Google, Facebook)</button>
+            </form>
+        </section>
+    </div>
+</div>

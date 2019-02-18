@@ -24,15 +24,20 @@ namespace BrowserGame.Migrations
                     b.Property<int>("PersonsID")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("Age");
+                    b.Property<int>("Attempts");
 
-                    b.Property<int>("Defense");
+                    b.Property<string>("Color");
 
-                    b.Property<int>("Health");
+                    b.Property<int>("MaxPoints");
 
-                    b.Property<string>("Name");
+                    b.Property<string>("Name")
+                        .IsRequired();
 
-                    b.Property<int>("Strength");
+                    b.Property<int>("Size");
+
+                    b.Property<int>("Speed");
+
+                    b.Property<string>("User");
 
                     b.HasKey("PersonsID");
 
@@ -152,11 +157,9 @@ namespace BrowserGame.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.Property<string>("LoginProvider")
-                        .HasMaxLength(128);
+                    b.Property<string>("LoginProvider");
 
-                    b.Property<string>("ProviderKey")
-                        .HasMaxLength(128);
+                    b.Property<string>("ProviderKey");
 
                     b.Property<string>("ProviderDisplayName");
 
@@ -187,11 +190,9 @@ namespace BrowserGame.Migrations
                 {
                     b.Property<string>("UserId");
 
-                    b.Property<string>("LoginProvider")
-                        .HasMaxLength(128);
+                    b.Property<string>("LoginProvider");
 
-                    b.Property<string>("Name")
-                        .HasMaxLength(128);
+                    b.Property<string>("Name");
 
                     b.Property<string>("Value");
 

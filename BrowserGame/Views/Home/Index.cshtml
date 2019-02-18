@@ -3,28 +3,17 @@
 }
 
 @using Microsoft.AspNetCore.Identity
-@inject SignInManager<IdentityUser> SignInManager
+@inject SignInManager<User> SignInManager
+<link rel="stylesheet" href="~/css/Style.css" />
 
-<style>
-    button.knopka {
-        color: #fff;
-        background: #88bbd6;
-        padding: 25px;
-        border-radius: 15px;
-        border: 3px solid #cc0000;
-    }
-
-        button.knopka:hover {
-            background: #00303f;
-        }
-</style>
 
 <div class="text-center">
     @if (SignInManager.IsSignedIn(User))
     {
-        <h1 class="display-4">@User.Identity.Name<br /><br />Необходимо выбрать персонаж</h1>
+        <h1 class="display-4">@User.Identity.Name<br /><br /></h1>
+        <h2>Необходимо выбрать персонаж</h2>
         <form action="\Persons\Index">
-            <button class="knopka">Выбрать</button>
+            <button class="btn btn-primary">Выбрать</button>
         </form>
     }
     else

@@ -1,0 +1,10 @@
+﻿@using System.IO
+
+@{
+    ViewData["Title"] = "Logs";
+}
+@{string file =  $"{Directory.GetCurrentDirectory()}\\logs\\log_{DateTime.Today.ToShortDateString()}.txt";
+}
+<h1>Логи</h1>
+
+file = @file

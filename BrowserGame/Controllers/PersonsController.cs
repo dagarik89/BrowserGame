@@ -7,26 +7,36 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using BrowserGame.Data;
 using BrowserGame.Models;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.Extensions.Logging;
 
 namespace BrowserGame.Controllers
 {
+    [Authorize]
     public class PersonsController : Controller
     {
 
         private readonly ApplicationDbContext _context;
+        private readonly ILogger _logger;
 
-        public PersonsController(ApplicationDbContext context)
+        public PersonsController(ApplicationDbContext context, ILogger<PersonsController> logger)
         {
             _context = context;
+            _logger = logger;
         }
 
         // GET: Persons
+        [HttpGet]
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Persons.ToListAsync());
+            var userPersons = _context.Persons
+                .Where(m => m.User == HttpContext.User.Identity.Name || m.User == "Default");
+
+            return View(await userPersons.ToListAsync());
         }
 
         // GET: Persons/Details/5
+        [HttpGet]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -41,24 +51,72 @@ namespace BrowserGame.Controllers
                 return NotFound();
             }
 
+            if (persons.User != HttpContext.User.Identity.Name || persons.User == "Default")
+            {
+                return RedirectToAction(nameof(Index));
+            }
+
             return View(persons);
         }
 
+
+        // GET: Game
+        [HttpGet]
+        public async Task<IActionResult> Game(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var persons = await _context.Persons
+                .FirstOrDefaultAsync(m => m.PersonsID == id);
+            if (persons == null)
+            {
+                return NotFound();
+            }
+            
+            if (persons.User != HttpContext.User.Identity.Name && persons.User != "Default")
+            {
+                return RedirectToAction(nameof(Index));
+            }
+            
+            return View(persons);
+        }
+
+
+
         // GET: Persons/Create
+        [HttpGet]
         public IActionResult Create()
         {
             return View();
         }
+
 
         // POST: Persons/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("PersonsID,Name,Age,Strength,Health,Defense")] Persons persons)
+        public async Task<IActionResult> Create(Persons persons)
         {
+            if (persons.Name.Length < 3 || persons.Name.Length > 10)
+            {
+                ModelState.AddModelError("Name", "Длина строки должна быть от 3 до 10 символов");
+            }
+
+            var equalPersons = _context.Persons
+                .Where(m => m.Name == persons.Name);
+
+            if (equalPersons.Count() > 0)
+            {
+                ModelState.AddModelError("Name", "Персонаж с таким именем занят!");
+            }
+
             if (ModelState.IsValid)
             {
+                persons.User = HttpContext.User.Identity.Name;
                 _context.Add(persons);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -67,6 +125,7 @@ namespace BrowserGame.Controllers
         }
 
         // GET: Persons/Edit/5
+        [HttpGet]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -79,6 +138,11 @@ namespace BrowserGame.Controllers
             {
                 return NotFound();
             }
+
+            if (persons.User != HttpContext.User.Identity.Name || persons.User == "Default")
+            {
+                return RedirectToAction(nameof(Index));
+            }
             return View(persons);
         }
 
@@ -87,11 +151,19 @@ namespace BrowserGame.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("PersonsID,Name,Age,Strength,Health,Defense")] Persons persons)
+        public async Task<IActionResult> Edit(int id, Persons persons)
         {
             if (id != persons.PersonsID)
             {
                 return NotFound();
+            }
+
+            var equalPersons = _context.Persons
+                .Where(m => m.Name == persons.Name && m.PersonsID != persons.PersonsID);
+
+            if (equalPersons.Count() > 0)
+            {
+                ModelState.AddModelError("Name", "Персонаж с таким именем занят!");
             }
 
             if (ModelState.IsValid)
@@ -118,6 +190,7 @@ namespace BrowserGame.Controllers
         }
 
         // GET: Persons/Delete/5
+        [HttpGet]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -130,6 +203,11 @@ namespace BrowserGame.Controllers
             if (persons == null)
             {
                 return NotFound();
+            }
+
+            if (persons.User != HttpContext.User.Identity.Name || persons.User == "Default")
+            {
+                return RedirectToAction(nameof(Index));
             }
 
             return View(persons);

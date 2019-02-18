@@ -13,6 +13,12 @@ using Microsoft.EntityFrameworkCore;
 using BrowserGame.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+using System.IO;
+using BrowserGame.Logger;
+using BrowserGame.Filters;
+using BrowserGame.Models;
+using Microsoft.AspNetCore.Identity.UI.Services;
 
 namespace BrowserGame
 {
@@ -40,7 +46,7 @@ namespace BrowserGame
                options.UseNpgsql(
                    Configuration.GetConnectionString("DefaultConnection")));
             //services.AddIdentity<User, IdentityRole>()      
-            services.AddDefaultIdentity<IdentityUser>()
+            services.AddIdentity<User, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders()
                 .AddDefaultUI(UIFramework.Bootstrap4);
@@ -59,21 +65,31 @@ namespace BrowserGame
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
-
+        
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
+
+            //app.UseMiddleware<ExceptionHandlerMiddleware>();
+            loggerFactory.AddFile(Path.Combine(Directory.GetCurrentDirectory(), $"logs\\log_{DateTime.Today.ToShortDateString()}.txt"));
+            var _logger = loggerFactory.CreateLogger("FileLogger");
+
+            
+            //env.EnvironmentName = EnvironmentName.Production; //режим развертывания
             if (env.IsDevelopment())
             {
+                _logger.LogInformation("In Development environment");
                 app.UseDeveloperExceptionPage();
                 app.UseDatabaseErrorPage();
             }
             else
             {
-                app.UseExceptionHandler("/Home/Error");
+                //app.UseExceptionHandler("/Home/Error");
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+            
+            app.UseStatusCodePagesWithReExecute("/Home/Error/{0}");
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();

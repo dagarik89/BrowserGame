@@ -18,24 +18,27 @@
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Age" class="control-label">Возраст</label>
-                <input asp-for="Age" class="form-control" />
-                <span asp-validation-for="Age" class="text-danger"></span>
+                <label asp-for="Speed" class="control-label">Скорость</label>
+                <input asp-for="Speed" class="form-control" />
+                <span asp-validation-for="Speed" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Strength" class="control-label">Сила</label>
-                <input asp-for="Strength" class="form-control" />
-                <span asp-validation-for="Strength" class="text-danger"></span>
+                <label asp-for="Color" class="control-label">Цветовая схема</label>
+                <select asp-for="Color">
+                    <option>Чёрный+красный</option>
+                    <option>Зелёный+красный</option>
+                    <option>Синий+красный</option>
+                    <option>Чёрный+зелёный</option>
+                    <option>Синий+зелёный</option>
+                    <option>Красный+зелёный</option>
+                </select>
+                
+                <span asp-validation-for="Color" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Health" class="control-label">Здоровье</label>
-                <input asp-for="Health" class="form-control" />
-                <span asp-validation-for="Health" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Defense" class="control-label">Защита</label>
-                <input asp-for="Defense" class="form-control" />
-                <span asp-validation-for="Defense" class="text-danger"></span>
+                <label asp-for="Size" class="control-label">Размер</label>
+                <input asp-for="Size" class="form-control" />
+                <span asp-validation-for="Size" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Создать" class="btn btn-primary" />

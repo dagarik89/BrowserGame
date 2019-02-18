@@ -1,0 +1,40 @@
+﻿@page
+@model BrowserGame.ViewModels.AuthViewModel
+
+<div class="row">
+    
+    <div class="col-md-6 col-md-offset-2">
+        <section>
+            <h4>Используйте другой сервис для входа</h4>
+            <hr />
+            @{
+                if ((Model.ExternalLogins?.Count ?? 0) == 0)
+                {
+                    <div>
+                        <p>
+                            Внешние службы проверки подлинности не настроены. См. <a href="https://go.microsoft.com/fwlink/?LinkID=532715">эту статью</a>
+                            для получения подробной информации о настройке этого приложения ASP.NET для поддержки входа через внешние службы.
+                        </p>
+                    </div>
+                }
+                else
+                {
+                    <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
+                        <div>
+                            <p>
+                                @foreach (var provider in Model.ExternalLogins)
+                                {
+                                    <button type="submit" class="btn btn-primary" name="provider" value="@provider.Name" title="Войти с помощью @provider.DisplayName аккаунта">@provider.DisplayName</button>
+                                }
+                            </p>
+                        </div>
+                    </form>
+                }
+            }
+        </section>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

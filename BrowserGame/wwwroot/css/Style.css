@@ -1,0 +1,14 @@
+﻿button.knopka {
+    color: #fff;
+    background: #88bbd6;
+    padding: 25px;
+    border-radius: 15px;
+    border: 3px solid #cc0000;
+}
+
+button.knopka:hover {
+        background: #00303f;
+    }
+
+body {
+}

@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace BrowserGame.Data
 {
-    public class ApplicationDbContext : IdentityDbContext//<User>
+    public class ApplicationDbContext : IdentityDbContext<User>
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)

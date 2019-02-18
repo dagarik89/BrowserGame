@@ -1,6 +1,6 @@
 ﻿@using Microsoft.AspNetCore.Identity
-@inject SignInManager<IdentityUser> SignInManager
-@inject UserManager<IdentityUser> UserManager
+@inject SignInManager<User> SignInManager
+@inject UserManager<User> UserManager
 
 <head>
     <meta charset="utf-8" />
@@ -13,8 +13,8 @@
         <a  class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Привет @User.Identity.Name!</a>
     </li>
     <li class="nav-item">
-        <form  class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-            <button  type="submit" class="nav-link btn btn-link text-dark">Выйти</button>
+        <form class="form-inline" asp-controller="Account" asp-action="LogOff">
+            <button type="submit" class="nav-link btn btn-link text-dark">Выйти</button>
         </form>
     </li>
 }
@@ -24,7 +24,7 @@ else
         <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Register">Регистрация</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Login">Войти</a>
+        <a class="nav-link text-dark"  asp-controller="Account" asp-action="Login">Войти</a>
     </li>
 }
 </ul>

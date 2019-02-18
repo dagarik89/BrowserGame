@@ -20,8 +20,8 @@ namespace BrowserGame.Data
 
             var usersLogin = new Persons[]
             {
-                new Persons { Name = "Adam",   Age = 30, Strength = 20, Defense = 30, Health = 100 },
-                new Persons { Name = "Eva",   Age = 25, Strength = 15, Defense = 35, Health = 100 },
+                new Persons { Name = "Ультра",   Color = "Чёрный+Красный", Speed = 50, Size = 30, User = "Default" },
+                new Persons { Name = "Черепаха",   Color = "Чёрный+Красный", Speed = 10, Size = 30, User = "Default" },
             };
             foreach (Persons s in usersLogin)
             {

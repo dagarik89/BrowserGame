@@ -16,16 +16,16 @@
                 Имя
             </th>
             <th>
-                Возраст
+                Скорость
             </th>
             <th>
-                Сила
+                Цветовая схема
             </th>
             <th>
-                Здоровье
+                Размер
             </th>
             <th>
-                Защита
+                Пользователь
             </th>
             <th></th>
         </tr>
@@ -39,25 +39,33 @@
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Age)
+                @Html.DisplayFor(modelItem => item.Speed)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Strength)
+                @Html.DisplayFor(modelItem => item.Color)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Health)
+                @Html.DisplayFor(modelItem => item.Size)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Defense)
+                @Html.DisplayFor(modelItem => item.User)
             </td>
-            
+            <td>
+                <!--
+                <form action="\Home\Game">
+                    <button>Выбрать</button>
+                </form>
+                -->
+                <a asp-action="Game" asp-route-id="@item.PersonsID">Выбрать</a> |
+            </td>
+
             @if (count > 1)
             {
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.PersonsID">Редактировать</a> |
-                <a asp-action="Details" asp-route-id="@item.PersonsID">Подробнее</a> |
-                <a asp-action="Delete" asp-route-id="@item.PersonsID">Удалить</a>
-            </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.PersonsID">Редактировать</a> |
+                    <a asp-action="Details" asp-route-id="@item.PersonsID">Подробнее</a> |
+                    <a asp-action="Delete" asp-route-id="@item.PersonsID">Удалить</a> |
+                </td>
             }
         </tr>
         count++;
