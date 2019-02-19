@@ -4,11 +4,16 @@ using System.Linq;
 using System.Threading.Tasks;
 using BrowserGame.Models;
 using BrowserGame.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BrowserGame.Controllers
 {
+    /// <summary>
+    /// Класс управления пользователями
+    /// </summary>
+    [Authorize(Roles = "Admin")]
     public class UsersController : Controller
     {
         UserManager<User> _userManager;
@@ -109,6 +114,9 @@ namespace BrowserGame.Controllers
             return View(model);
         }
 
+        /// <summary>
+        /// Смена пароля
+        /// </summary>
         [HttpPost]
         public async Task<IActionResult> ChangePassword(ChangePasswordViewModel model)
         {

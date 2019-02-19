@@ -12,10 +12,13 @@ using Microsoft.Extensions.Logging;
 
 namespace BrowserGame.Controllers
 {
+    /// <summary>
+    /// Класс управления персонажами
+    /// </summary>
     [Authorize]
     public class PersonsController : Controller
     {
-
+        public static string snake_color, food_color;
         private readonly ApplicationDbContext _context;
         private readonly ILogger _logger;
 
@@ -63,7 +66,7 @@ namespace BrowserGame.Controllers
         // GET: Game
         [HttpGet]
         public async Task<IActionResult> Game(int? id)
-        {
+        { 
             if (id == null)
             {
                 return NotFound();
@@ -80,7 +83,39 @@ namespace BrowserGame.Controllers
             {
                 return RedirectToAction(nameof(Index));
             }
-            
+
+            switch (persons.Color)
+            {
+                case "Чёрный+красный":
+                    snake_color = "#000";
+                    food_color = "red";
+                    break;
+                case "Зелёный+красный":
+                    snake_color = "green";
+                    food_color = "red";
+                    break;
+                case "Синий+красный":
+                    snake_color = "blue";
+                    food_color = "red";
+                    break;
+                case "Чёрный+зелёный":
+                    snake_color = "#000";
+                    food_color = "green";
+                    break;
+                case "Синий+зелёный":
+                    snake_color = "blue";
+                    food_color = "green";
+                    break;
+                case "Красный+зелёный":
+                    snake_color = "red";
+                    food_color = "green";
+                    break;
+                default:
+                    snake_color = "#000";
+                    food_color = "red";
+                    break;
+            }
+
             return View(persons);
         }
 

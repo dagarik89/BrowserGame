@@ -11,6 +11,7 @@ using Microsoft.Extensions.Logging;
 
 namespace BrowserGame.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -23,7 +24,7 @@ namespace BrowserGame.Controllers
             _logger = logger;
         }
 
-
+        [AllowAnonymous]
         [HttpGet]
         public IActionResult Index()
         {
@@ -42,7 +43,8 @@ namespace BrowserGame.Controllers
             return View();
         }
 
-        [Authorize]
+        [Authorize(Roles = "Admin")]
+        [HttpGet]
         public IActionResult Logs()
         {
             return View();
@@ -51,7 +53,7 @@ namespace BrowserGame.Controllers
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error(int? id)
         {
-            _logger.LogError($"Ошибка {id}");
+            //_logger.LogWarning("Ошибка({ID}) в {RequestTime}", id, DateTime.Now);
             return Redirect($"~/{id}.htm");
             //return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }

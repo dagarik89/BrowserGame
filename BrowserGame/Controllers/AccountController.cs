@@ -4,12 +4,17 @@ using System.Linq;
 using System.Threading.Tasks;
 using BrowserGame.Models;
 using BrowserGame.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
 namespace BrowserGame.Controllers
 {
+    /// <summary>
+    /// Класс регистрации и авторизации пользователей
+    /// </summary>
+    [Authorize]
     public class AccountController : Controller
     {
         private readonly UserManager<User> _userManager;
@@ -21,12 +26,14 @@ namespace BrowserGame.Controllers
             _signInManager = signInManager;
         }
 
+        [AllowAnonymous]
         [HttpGet]
         public IActionResult Register()
         {
             return View();
         }
 
+        [AllowAnonymous]
         [HttpPost]
         public async Task<IActionResult> Register(RegisterViewModel model)
         {
@@ -58,12 +65,14 @@ namespace BrowserGame.Controllers
             return View(new AuthViewModel(_signInManager) { ReturnUrl = returnUrl });
         }
 
+        [AllowAnonymous]
         [HttpGet]
         public IActionResult Login(string returnUrl = null)
         {
             return View(new LoginViewModel { ReturnUrl = returnUrl });
         }
 
+        [AllowAnonymous]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(LoginViewModel model)

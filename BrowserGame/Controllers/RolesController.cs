@@ -4,11 +4,16 @@ using System.Linq;
 using System.Threading.Tasks;
 using BrowserGame.Models;
 using BrowserGame.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BrowserGame.Controllers
 {
+    /// <summary>
+    /// Класс управления ролями пользователей
+    /// </summary>
+    [Authorize(Roles = "Admin")]
     public class RolesController : Controller
     {
         RoleManager<IdentityRole> _roleManager;
@@ -57,6 +62,9 @@ namespace BrowserGame.Controllers
             return RedirectToAction("Index");
         }
 
+        /// <summary>
+        /// Вывод списка пользователей
+        /// </summary>
         [HttpGet]
         public IActionResult UserList() => View(_userManager.Users.ToList());
 
