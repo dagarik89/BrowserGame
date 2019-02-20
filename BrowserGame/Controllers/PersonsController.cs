@@ -9,6 +9,7 @@ using BrowserGame.Data;
 using BrowserGame.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.Logging;
+using BrowserGame.ViewModels;
 
 namespace BrowserGame.Controllers
 {
@@ -18,7 +19,6 @@ namespace BrowserGame.Controllers
     [Authorize]
     public class PersonsController : Controller
     {
-        public static string snake_color, food_color;
         private readonly ApplicationDbContext _context;
         private readonly ILogger _logger;
 
@@ -84,6 +84,8 @@ namespace BrowserGame.Controllers
                 return RedirectToAction(nameof(Index));
             }
 
+            string snake_color, food_color;
+
             switch (persons.Color)
             {
                 case "Чёрный+красный":
@@ -116,7 +118,15 @@ namespace BrowserGame.Controllers
                     break;
             }
 
-            return View(persons);
+            GameViewModel model = new GameViewModel
+            {
+                Speed = persons.Speed,
+                Size = persons.Size,
+                Snake_color = snake_color,
+                Food_color = food_color
+            };
+
+            return View(model);
         }
 
 

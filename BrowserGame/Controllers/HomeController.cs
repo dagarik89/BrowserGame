@@ -53,9 +53,8 @@ namespace BrowserGame.Controllers
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error(int? id)
         {
-            //_logger.LogWarning("Ошибка({ID}) в {RequestTime}", id, DateTime.Now);
+            _logger.LogWarning("Ошибка({ID}) в {RequestTime}", id, DateTime.Now);
             return Redirect($"~/{id}.htm");
-            //return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     }
 }

@@ -12,6 +12,7 @@ namespace BrowserGame.ViewModels
         [Display(Name = "Email")]
         public string Email { get; set; }
 
+        [RegularExpression(@"^(?=.*[a-z])[A-Za-z\d@$!%^*?=#/&-_+`{|}~]{6,12}$", ErrorMessage = "{0} должен содержать хотя бы одну букву ('a'-'z'), не содержать русские буквы, быть не менее 6 и не более 12 символов.")]
         [Required(ErrorMessage = "Поле должно быть заполнено")]
         [DataType(DataType.Password)]
         [Display(Name = "Пароль")]
