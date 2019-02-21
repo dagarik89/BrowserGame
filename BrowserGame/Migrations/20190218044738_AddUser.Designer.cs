@@ -10,8 +10,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace BrowserGame.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20190206074842_Init")]
-    partial class Init
+    [Migration("20190218044738_AddUser")]
+    partial class AddUser
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -20,6 +20,31 @@ namespace BrowserGame.Migrations
                 .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn)
                 .HasAnnotation("ProductVersion", "2.2.1-servicing-10028")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
+
+            modelBuilder.Entity("BrowserGame.Models.Persons", b =>
+                {
+                    b.Property<int>("PersonsID")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("Attempts");
+
+                    b.Property<string>("Color");
+
+                    b.Property<int>("MaxPoints");
+
+                    b.Property<string>("Name")
+                        .IsRequired();
+
+                    b.Property<int>("Size");
+
+                    b.Property<int>("Speed");
+
+                    b.Property<string>("User");
+
+                    b.HasKey("PersonsID");
+
+                    b.ToTable("Persons");
+                });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
@@ -134,11 +159,9 @@ namespace BrowserGame.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.Property<string>("LoginProvider")
-                        .HasMaxLength(128);
+                    b.Property<string>("LoginProvider");
 
-                    b.Property<string>("ProviderKey")
-                        .HasMaxLength(128);
+                    b.Property<string>("ProviderKey");
 
                     b.Property<string>("ProviderDisplayName");
 
@@ -169,11 +192,9 @@ namespace BrowserGame.Migrations
                 {
                     b.Property<string>("UserId");
 
-                    b.Property<string>("LoginProvider")
-                        .HasMaxLength(128);
+                    b.Property<string>("LoginProvider");
 
-                    b.Property<string>("Name")
-                        .HasMaxLength(128);
+                    b.Property<string>("Name");
 
                     b.Property<string>("Value");
 

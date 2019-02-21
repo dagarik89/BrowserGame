@@ -1,0 +1,45 @@
+﻿@model BrowserGame.Models.Persons
+
+@{
+    ViewData["Title"] = "Удаление";
+}
+
+<h1>Удаление</h1>
+
+<h3>Вы уверены, что хотите удалить этот персонаж?</h3>
+<div>
+    <h4>Персонаж</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            Имя
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class = "col-sm-2">
+            Скорость
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Speed)
+        </dd>
+        <dt class = "col-sm-2">
+            Цветовая схема
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Color)
+        </dd>
+        <dt class = "col-sm-2">
+            Размер
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Size)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="PersonsID" />
+        <input type="submit" value="Удалить" class="btn btn-danger" /> |
+        <a asp-action="Index">Назад</a>
+    </form>
+</div>

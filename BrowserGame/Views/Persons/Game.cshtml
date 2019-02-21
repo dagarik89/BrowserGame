@@ -1,0 +1,25 @@
+﻿@model BrowserGame.ViewModels.GameViewModel
+@{
+    ViewData["Title"] = "Game";
+}
+
+<body>
+    <fieldset>
+        <legend>Информация об игре</legend>
+        <div class="display-label"><b>Размер</b></div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.Size)
+        </div>
+        <div class="display-label"><b>Скорость</b></div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.Speed)
+        </div>
+    </fieldset>
+    <input id="size" type="text" value="@Model.Size" hidden="hidden">
+    <input id="speed" type="text" value="@Model.Speed" hidden="hidden">
+    <input id="snake_color" type="text" value="@Model.Snake_color" hidden="hidden">
+    <input id="food_color" type="text" value="@Model.Food_color" hidden="hidden">
+    <br>
+    <canvas id="snake" width="810" height="570">HTML 5 не поддерживается</canvas>
+    <script src="~/js/game.js"></script>
+</body>

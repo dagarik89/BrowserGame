@@ -1,0 +1,74 @@
+﻿@model IEnumerable<BrowserGame.Models.Persons>
+
+@{
+    ViewData["Title"] = "Персонажи";
+}
+
+<h1>Персонажи</h1>
+
+<p>
+    <a asp-action="Create">Создать нового персонажа</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Имя
+            </th>
+            <th>
+                Скорость
+            </th>
+            <th>
+                Цветовая схема
+            </th>
+            <th>
+                Размер
+            </th>
+            <th>
+                Пользователь
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+
+@{int count = 0; }
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Speed)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Color)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Size)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.User)
+            </td>
+            <td>
+                <!--
+                <form action="\Home\Game">
+                    <button>Выбрать</button>
+                </form>
+                -->
+                <a asp-action="Game" asp-route-id="@item.PersonsID">Выбрать</a> |
+            </td>
+
+            @if (count > 1)
+            {
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.PersonsID">Редактировать</a> |
+                    <a asp-action="Details" asp-route-id="@item.PersonsID">Подробнее</a> |
+                    <a asp-action="Delete" asp-route-id="@item.PersonsID">Удалить</a> |
+                </td>
+            }
+        </tr>
+        count++;
+}
+    </tbody>
+</table>
