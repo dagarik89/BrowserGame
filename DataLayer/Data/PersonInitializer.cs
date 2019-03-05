@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using DataLayer.Models;
 using System.Linq;
-using System.Threading.Tasks;
-using BrowserGame.Models;
 
-namespace BrowserGame.Data
+namespace DataLayer.Data
 {
     public class PersonInitializer
     {
@@ -22,6 +19,7 @@ namespace BrowserGame.Data
             {
                 new Persons { Name = "Ультра",   Color = "Чёрный+Красный", Speed = 50, Size = 30, User = "Default" },
                 new Persons { Name = "Черепаха",   Color = "Чёрный+Красный", Speed = 10, Size = 30, User = "Default" },
+                new Persons { Name = "Test",   Color = "Чёрный+Красный", Speed = 10, Size = 10, User = "galantsev.dmitriy@gmail.com" },
             };
             foreach (Persons s in usersLogin)
             {

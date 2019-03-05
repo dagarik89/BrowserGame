@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using BrowserGame.Models;
+﻿using DataLayer.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace BrowserGame.Data
+namespace DataLayer.Data
 {
-    public class ApplicationDbContext : IdentityDbContext<User>
+    public class ApplicationDbContext : IdentityDbContext<UserData>
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
@@ -16,10 +13,12 @@ namespace BrowserGame.Data
         }
 
         public DbSet<Persons> Persons { get; set; }
+        public DbSet<UserData> User { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.Entity<Persons>().HasKey(m => m.PersonsID);
+            builder.Entity<UserData>().HasKey(m => m.Id);
             base.OnModelCreating(builder);
         }
     }

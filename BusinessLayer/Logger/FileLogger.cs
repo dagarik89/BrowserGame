@@ -2,7 +2,7 @@
 using System;
 using System.IO;
 
-namespace BrowserGame.Logger
+namespace BusinessLayer.Logger
 {
     public class FileLogger : ILogger
     {

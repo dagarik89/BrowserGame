@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 
-namespace BrowserGame.Logger
+namespace BusinessLayer.Logger
 {
     public class FileLoggerProvider : ILoggerProvider
     {

@@ -5,6 +5,10 @@ VisualStudioVersion = 15.0.28307.329
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BrowserGame", "BrowserGame\BrowserGame.csproj", "{D93671A2-941B-452A-8ED4-57BF1E4F891D}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataLayer", "DataLayer\DataLayer.csproj", "{9E731AC1-1669-4E77-A247-C76481AE6529}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BusinessLayer", "BusinessLayer\BusinessLayer.csproj", "{BD96D946-59AE-428A-BED0-759BF3148448}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{D93671A2-941B-452A-8ED4-57BF1E4F891D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D93671A2-941B-452A-8ED4-57BF1E4F891D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D93671A2-941B-452A-8ED4-57BF1E4F891D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9E731AC1-1669-4E77-A247-C76481AE6529}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9E731AC1-1669-4E77-A247-C76481AE6529}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9E731AC1-1669-4E77-A247-C76481AE6529}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9E731AC1-1669-4E77-A247-C76481AE6529}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BD96D946-59AE-428A-BED0-759BF3148448}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD96D946-59AE-428A-BED0-759BF3148448}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BD96D946-59AE-428A-BED0-759BF3148448}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BD96D946-59AE-428A-BED0-759BF3148448}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -5,9 +5,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using BrowserGame.Models;
-using BrowserGame.Data;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.Logging;
+using DataLayer.Data;
 
 namespace BrowserGame.Controllers
 {
@@ -51,10 +51,12 @@ namespace BrowserGame.Controllers
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        [HttpGet]
         public IActionResult Error(int? id)
         {
             _logger.LogWarning("Ошибка({ID}) в {RequestTime}", id, DateTime.Now);
             return Redirect($"~/{id}.htm");
         }
+
     }
 }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using BrowserGame.Models;
 using BrowserGame.ViewModels;
+using DataLayer.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -16,9 +17,9 @@ namespace BrowserGame.Controllers
     [Authorize(Roles = "Admin")]
     public class UsersController : Controller
     {
-        UserManager<User> _userManager;
+        UserManager<UserData> _userManager;
 
-        public UsersController(UserManager<User> userManager)
+        public UsersController(UserManager<UserData> userManager)
         {
             _userManager = userManager;
         }
@@ -34,7 +35,7 @@ namespace BrowserGame.Controllers
         {
             if (ModelState.IsValid)
             {
-                User user = new User { Email = model.Email, UserName = model.Email };
+                UserData user = new UserData { Email = model.Email, UserName = model.Email };
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -54,7 +55,7 @@ namespace BrowserGame.Controllers
         [HttpGet]
         public async Task<IActionResult> Edit(string id)
         {
-            User user = await _userManager.FindByIdAsync(id);
+            UserData user = await _userManager.FindByIdAsync(id);
             if (user == null)
             {
                 return NotFound();
@@ -68,7 +69,7 @@ namespace BrowserGame.Controllers
         {
             if (ModelState.IsValid)
             {
-                User user = await _userManager.FindByIdAsync(model.Id);
+                UserData user = await _userManager.FindByIdAsync(model.Id);
                 if (user != null)
                 {
                     user.Email = model.Email;
@@ -94,7 +95,7 @@ namespace BrowserGame.Controllers
         [HttpPost]
         public async Task<ActionResult> Delete(string id)
         {
-            User user = await _userManager.FindByIdAsync(id);
+            UserData user = await _userManager.FindByIdAsync(id);
             if (user != null)
             {
                 IdentityResult result = await _userManager.DeleteAsync(user);
@@ -105,7 +106,7 @@ namespace BrowserGame.Controllers
         [HttpGet]
         public async Task<IActionResult> ChangePassword(string id)
         {
-            User user = await _userManager.FindByIdAsync(id);
+            UserData user = await _userManager.FindByIdAsync(id);
             if (user == null)
             {
                 return NotFound();
@@ -122,7 +123,7 @@ namespace BrowserGame.Controllers
         {
             if (ModelState.IsValid)
             {
-                User user = await _userManager.FindByIdAsync(model.Id);
+                UserData user = await _userManager.FindByIdAsync(model.Id);
                 if (user != null)
                 {
                     IdentityResult result =
