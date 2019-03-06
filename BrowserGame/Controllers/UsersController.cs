@@ -24,12 +24,21 @@ namespace BrowserGame.Controllers
             _userManager = userManager;
         }
 
+        /// <summary>
+        /// Получает список пользователей
+        /// </summary>
         [HttpGet]
         public IActionResult Index() => View(_userManager.Users.ToList());
 
+        /// <summary>
+        /// Получает страницу добавления пользователя
+        /// </summary>
         [HttpGet]
         public IActionResult Create() => View();
 
+        /// <summary>
+        /// Добавление пользователя
+        /// </summary>
         [HttpPost]
         public async Task<IActionResult> Create(CreateUserViewModel model)
         {
@@ -52,6 +61,10 @@ namespace BrowserGame.Controllers
             return View(model);
         }
 
+        /// <summary>
+        /// Получает страницу редактирования данных пользователя
+        /// </summary>
+        /// <param name="id">Идентификатор пользователя</param>
         [HttpGet]
         public async Task<IActionResult> Edit(string id)
         {
@@ -64,6 +77,9 @@ namespace BrowserGame.Controllers
             return View(model);
         }
 
+        /// <summary>
+        /// Редактирование данных пользователя
+        /// </summary>
         [HttpPost]
         public async Task<IActionResult> Edit(EditUserViewModel model)
         {
@@ -92,6 +108,10 @@ namespace BrowserGame.Controllers
             return View(model);
         }
 
+        /// <summary>
+        /// Получает страницу удаления записи о пользователе
+        /// </summary>
+        /// <param name="id">Идентификатор пользователя</param>
         [HttpPost]
         public async Task<ActionResult> Delete(string id)
         {
@@ -103,6 +123,10 @@ namespace BrowserGame.Controllers
             return RedirectToAction("Index");
         }
 
+        /// <summary>
+        /// Удаление записи о пользователе
+        /// </summary>
+        /// <param name="id">Идентификатор пользователя</param>
         [HttpGet]
         public async Task<IActionResult> ChangePassword(string id)
         {

@@ -22,7 +22,7 @@ namespace DataLayer.Services.Implementation
             await db.SaveChangesAsync();
         }
 
-        public async Task<IList<Persons>> GetPersons(string name)
+        public async Task<IList<PersonsData>> GetPersons(string name)
         {
             var userPersons = db.Persons
                 .Where(m => m.User == name || m.User == "Default");
@@ -31,7 +31,7 @@ namespace DataLayer.Services.Implementation
         }
 
 
-        public async Task<Persons> GetDetails(int id)
+        public async Task<PersonsData> GetDetails(int id)
         {
             var persons = db.Persons
                 .FirstOrDefaultAsync(m => m.PersonsID == id);
@@ -39,28 +39,28 @@ namespace DataLayer.Services.Implementation
             return await persons;
         }
 
-        public async Task CreatePers(Persons persons, string name)
+        public async Task CreatePers(PersonsData persons, string name)
         {
             this.db.Persons.Add(persons);
             await this.db.SaveChangesAsync();
         }
 
-        public async Task UpdatePers(Persons persons, string name)
+        public async Task UpdatePers(PersonsData persons, string name)
         {
             this.db.Persons.Update(persons);
             await this.db.SaveChangesAsync();
         }
 
-        public  IList<Persons> EqualPers(string name)
+        public  IList<PersonsData> EqualPers(string name)
         {
-            IQueryable<Persons> equalPers = db.Persons
+            IQueryable<PersonsData> equalPers = db.Persons
                         .Where(m => m.Name == name);
             return equalPers.ToList();
         }
 
-        public IList<Persons> EqualPersUpdate(string name, int id)
+        public IList<PersonsData> EqualPersUpdate(string name, int id)
         {
-            IQueryable<Persons> equalPers = db.Persons
+            IQueryable<PersonsData> equalPers = db.Persons
                         .Where(m => m.Name == name && m.PersonsID != id);
             return equalPers.ToList();
         }

@@ -43,7 +43,7 @@ namespace DataLayer.Services.Implementation
 
         public async Task CreatePers(PersonsBusiness persons, string name, string operation)
         {
-            var personsDto = persons.Adapt<Persons>();
+            var personsDto = persons.Adapt<PersonsData>();
             personsDto.User = persons.User;
             switch (operation)
             {
@@ -58,7 +58,7 @@ namespace DataLayer.Services.Implementation
 
         public IList<PersonsBusiness> EqualPers(string name, string operation, int? id)
         {
-            IList<Persons> personsDto = null;
+            IList<PersonsData> personsDto = null;
 
             switch (operation)
             {

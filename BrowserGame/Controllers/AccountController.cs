@@ -32,6 +32,9 @@ namespace BrowserGame.Controllers
             _logger = logger;
         }
 
+        /// <summary>
+        /// Получает страницу регистрации пользователя
+        /// </summary>
         [AllowAnonymous]
         [HttpGet]
         public IActionResult Register()
@@ -39,6 +42,9 @@ namespace BrowserGame.Controllers
             return View();
         }
 
+        /// <summary>
+        /// Регистрация пользователя
+        /// </summary>
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
         [HttpPost]
@@ -74,7 +80,9 @@ namespace BrowserGame.Controllers
             return View(model);
         }
 
-
+        /// <summary>
+        /// Получает страницу о необходимости подтверждения email
+        /// </summary>
         [AllowAnonymous]
         [HttpGet]
         public IActionResult Confirm()
@@ -85,6 +93,8 @@ namespace BrowserGame.Controllers
         /// <summary>
         /// Проверка подтверждения email
         /// </summary>
+        /// <param name="userId">Идентификатор пользователя</param>
+        /// <param name="code">Токен подтверждения email</param>
         [HttpGet]
         [AllowAnonymous]
         public async Task<IActionResult> ConfirmEmail(string userId, string code)
@@ -105,12 +115,18 @@ namespace BrowserGame.Controllers
                 return View("Error");
         }
 
+        /// <summary>
+        /// Получает страницу аутентификации пользователя
+        /// </summary>
         [HttpGet]
         public IActionResult Auth(string returnUrl = null)
         {
             return View(new AuthViewModel(_signInManager) { ReturnUrl = returnUrl });
         }
 
+        /// <summary>
+        /// Получает страницу входа на сайт
+        /// </summary>
         [AllowAnonymous]
         [HttpGet]
         public IActionResult Login(string returnUrl = null)
@@ -118,6 +134,9 @@ namespace BrowserGame.Controllers
             return View(new LoginViewModel { ReturnUrl = returnUrl });
         }
 
+        /// <summary>
+        /// Вход на сайт
+        /// </summary>
         [AllowAnonymous]
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -160,6 +179,9 @@ namespace BrowserGame.Controllers
             return View(model);
         }
 
+        /// <summary>
+        /// Получает страницу сброса пароля
+        /// </summary>
         [HttpGet]
         [AllowAnonymous]
         public IActionResult ForgotPassword()
@@ -195,6 +217,10 @@ namespace BrowserGame.Controllers
             return View(model);
         }
 
+        /// <summary>
+        /// Получает страницу повторной установки пароля
+        /// </summary>
+        /// <param name="code">Токен сброса пароля</param>
         [HttpGet]
         [AllowAnonymous]
         public IActionResult ResetPassword(string code = null)
@@ -202,6 +228,9 @@ namespace BrowserGame.Controllers
             return code == null ? View("Error") : View();
         }
 
+        /// <summary>
+        /// Повторная установка пароля
+        /// </summary>
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -228,6 +257,9 @@ namespace BrowserGame.Controllers
             return View(model);
         }
 
+        /// <summary>
+        /// Выход с сайта
+        /// </summary>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> LogOff()

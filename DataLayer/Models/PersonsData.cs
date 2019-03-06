@@ -5,7 +5,7 @@ namespace DataLayer.Models
     /// <summary>
     /// Персонаж
     /// </summary>
-    public class Persons
+    public class PersonsData
     {
         /// <summary>
         /// Идентификатор персонажа

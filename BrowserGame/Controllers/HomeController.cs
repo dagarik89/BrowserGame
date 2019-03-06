@@ -11,6 +11,9 @@ using DataLayer.Data;
 
 namespace BrowserGame.Controllers
 {
+    /// <summary>
+    /// Базовый контроллер приложения
+    /// </summary>
     [Authorize]
     public class HomeController : Controller
     {
@@ -24,6 +27,9 @@ namespace BrowserGame.Controllers
             _logger = logger;
         }
 
+        /// <summary>
+        /// Получает главную страницу
+        /// </summary>
         [AllowAnonymous]
         [HttpGet]
         public IActionResult Index()
@@ -31,18 +37,27 @@ namespace BrowserGame.Controllers
             return View();
         }
 
+        /// <summary>
+        /// Получает страницу конфиденциальности
+        /// </summary>
         [HttpGet]
         public IActionResult Privacy()
         {
             return View();
         }
 
+        /// <summary>
+        /// Получает страницу игры
+        /// </summary>
         [HttpGet]
         public IActionResult Game()
         {
             return View();
         }
 
+        /// <summary>
+        /// Получает страницу логов
+        /// </summary>
         [Authorize(Roles = "Admin")]
         [HttpGet]
         public IActionResult Logs()
@@ -50,6 +65,9 @@ namespace BrowserGame.Controllers
             return View();
         }
 
+        /// <summary>
+        /// Обработка ошибок http
+        /// </summary>
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         [HttpGet]
         public IActionResult Error(int? id)

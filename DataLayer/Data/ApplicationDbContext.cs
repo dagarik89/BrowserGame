@@ -12,12 +12,12 @@ namespace DataLayer.Data
             //Database.EnsureCreated();
         }
 
-        public DbSet<Persons> Persons { get; set; }
+        public DbSet<PersonsData> Persons { get; set; }
         public DbSet<UserData> User { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            builder.Entity<Persons>().HasKey(m => m.PersonsID);
+            builder.Entity<PersonsData>().HasKey(m => m.PersonsID);
             builder.Entity<UserData>().HasKey(m => m.Id);
             base.OnModelCreating(builder);
         }

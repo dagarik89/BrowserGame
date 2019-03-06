@@ -25,12 +25,22 @@ namespace BrowserGame.Controllers
             _userManager = userManager;
         }
 
+        /// <summary>
+        /// Получает список ролей
+        /// </summary>
         [HttpGet]
         public IActionResult Index() => View(_roleManager.Roles.ToList());
 
+        /// <summary>
+        /// Получает страницу создания роли
+        /// </summary>
         [HttpGet]
         public IActionResult Create() => View();
 
+        /// <summary>
+        /// Создание роли
+        /// </summary>
+        /// <param name="name">Название роли</param>
         [HttpPost]
         public async Task<IActionResult> Create(string name)
         {
@@ -52,6 +62,10 @@ namespace BrowserGame.Controllers
             return View(name);
         }
 
+        /// <summary>
+        /// Удаление роли
+        /// </summary>
+        /// <param name="id">Идентификатор роли</param>
         [HttpPost]
         public async Task<IActionResult> Delete(string id)
         {
@@ -64,11 +78,15 @@ namespace BrowserGame.Controllers
         }
 
         /// <summary>
-        /// Вывод списка пользователей
+        /// Получает список пользователей
         /// </summary>
         [HttpGet]
         public IActionResult UserList() => View(_userManager.Users.ToList());
 
+        /// <summary>
+        /// Получает страницу редактирования ролей пользователя
+        /// </summary>
+        /// <param name="userId">Идентификатор пользователя</param>
         [HttpGet]
         public async Task<IActionResult> Edit(string userId)
         {
@@ -92,6 +110,11 @@ namespace BrowserGame.Controllers
             return NotFound();
         }
 
+        /// <summary>
+        /// Редактирование ролей пользователя
+        /// </summary>
+        /// <param name="userId">Идентификатор пользователя</param>
+        /// <param name="roles">Список ролей</param>
         [HttpPost]
         public async Task<IActionResult> Edit(string userId, List<string> roles)
         {

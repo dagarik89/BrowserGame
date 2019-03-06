@@ -9,7 +9,6 @@ using BrowserGame.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.Logging;
 using BrowserGame.ViewModels;
-using DataLayer.Data;
 using BrowserGame.Services;
 
 namespace BrowserGame.Controllers
@@ -20,18 +19,19 @@ namespace BrowserGame.Controllers
     [Authorize]
     public class PersonsController : Controller
     {
-        private readonly ApplicationDbContext _context;
         private readonly ILogger _logger;
         private readonly IPersonsService _pers;
 
-        public PersonsController(ApplicationDbContext context, ILogger<PersonsController> logger, IPersonsService pers)
+        public PersonsController(ILogger<PersonsController> logger, IPersonsService pers)
         {
-            _context = context;
             _logger = logger;
             _pers = pers;
         }
 
         // GET: Persons
+        /// <summary>
+        /// Получает список персонажей
+        /// </summary>
         [HttpGet]
         public async Task<IActionResult> Index()
         {
@@ -39,6 +39,10 @@ namespace BrowserGame.Controllers
         }
 
         // GET: Persons/Details/5
+        /// <summary>
+        /// Получает данные о персонаже
+        /// </summary>
+        /// <param name="id">Идентификатор персонажа</param>
         [HttpGet]
         public async Task<IActionResult> Details(int? id)
         {
@@ -63,6 +67,10 @@ namespace BrowserGame.Controllers
         }
 
         // GET: Game
+        /// <summary>
+        /// Получает игровую модель
+        /// </summary>
+        /// <param name="id">Идентификатор персонажа</param>
         [HttpGet]
         public async Task<IActionResult> Game(int? id)
         { 
@@ -89,6 +97,9 @@ namespace BrowserGame.Controllers
         }
 
         // GET: Persons/Create
+        /// <summary>
+        /// Получает страницу создания персонажей
+        /// </summary>
         [HttpGet]
         public IActionResult Create()
         {
@@ -96,6 +107,10 @@ namespace BrowserGame.Controllers
         }
 
         // POST: Persons/Create
+        /// <summary>
+        /// Создает персонаж
+        /// </summary>
+        /// <param name="persons">Модель персонажа</param>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Persons persons)
@@ -121,6 +136,10 @@ namespace BrowserGame.Controllers
         }
 
         // GET: Persons/Edit/5
+        /// <summary>
+        /// Получает страницу редактирования персонажа
+        /// </summary>
+        /// <param name="id">Идентификатор персонажа</param>
         [HttpGet]
         public async Task<IActionResult> Edit(int? id)
         {
@@ -144,6 +163,11 @@ namespace BrowserGame.Controllers
         }
 
         // POST: Persons/Edit/5
+        /// <summary>
+        /// Редактирует данные персонажа
+        /// </summary>
+        /// <param name="id">Идентификатор персонажа</param>
+        /// <param name="persons">Модель персонажа</param>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, Persons persons)
@@ -174,6 +198,10 @@ namespace BrowserGame.Controllers
         }
 
         // GET: Persons/Delete/5
+        /// <summary>
+        /// Получает страницу удаления персонажа
+        /// </summary>
+        /// <param name="id">Идентификатор персонажа</param>
         [HttpGet]
         public async Task<IActionResult> Delete(int? id)
         {
@@ -198,6 +226,10 @@ namespace BrowserGame.Controllers
         }
 
         // POST: Persons/Delete/5
+        /// <summary>
+        /// Удаляет персонаж
+        /// </summary>
+        /// <param name="id">Идентификатор персонажа</param>
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
