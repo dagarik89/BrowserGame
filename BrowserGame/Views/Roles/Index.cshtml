@@ -6,6 +6,8 @@
         {
             <tr>
                 <td>@role.Name</td>
+                @if (role.Name!="Admin")
+                {        
                 <td>
                     <form asp-action="Delete" asp-route-id="@role.Id" method="post">
                         <button type="submit" class="btn btn-sm btn-danger">
@@ -13,6 +15,7 @@
                         </button>
                     </form>
                 </td>
+                }
             </tr>
         }
     </table>

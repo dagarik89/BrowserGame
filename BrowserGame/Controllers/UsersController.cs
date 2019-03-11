@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using BrowserGame.Models;
 using BrowserGame.ViewModels;
+using DataLayer.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -16,25 +17,34 @@ namespace BrowserGame.Controllers
     [Authorize(Roles = "Admin")]
     public class UsersController : Controller
     {
-        UserManager<User> _userManager;
+        UserManager<UserData> _userManager;
 
-        public UsersController(UserManager<User> userManager)
+        public UsersController(UserManager<UserData> userManager)
         {
             _userManager = userManager;
         }
 
+        /// <summary>
+        /// Получает список пользователей
+        /// </summary>
         [HttpGet]
         public IActionResult Index() => View(_userManager.Users.ToList());
 
+        /// <summary>
+        /// Получает страницу добавления пользователя
+        /// </summary>
         [HttpGet]
         public IActionResult Create() => View();
 
+        /// <summary>
+        /// Добавление пользователя
+        /// </summary>
         [HttpPost]
         public async Task<IActionResult> Create(CreateUserViewModel model)
         {
             if (ModelState.IsValid)
             {
-                User user = new User { Email = model.Email, UserName = model.Email };
+                UserData user = new UserData { Email = model.Email, UserName = model.Email };
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -51,10 +61,14 @@ namespace BrowserGame.Controllers
             return View(model);
         }
 
+        /// <summary>
+        /// Получает страницу редактирования данных пользователя
+        /// </summary>
+        /// <param name="id">Идентификатор пользователя</param>
         [HttpGet]
         public async Task<IActionResult> Edit(string id)
         {
-            User user = await _userManager.FindByIdAsync(id);
+            UserData user = await _userManager.FindByIdAsync(id);
             if (user == null)
             {
                 return NotFound();
@@ -63,12 +77,15 @@ namespace BrowserGame.Controllers
             return View(model);
         }
 
+        /// <summary>
+        /// Редактирование данных пользователя
+        /// </summary>
         [HttpPost]
         public async Task<IActionResult> Edit(EditUserViewModel model)
         {
             if (ModelState.IsValid)
             {
-                User user = await _userManager.FindByIdAsync(model.Id);
+                UserData user = await _userManager.FindByIdAsync(model.Id);
                 if (user != null)
                 {
                     user.Email = model.Email;
@@ -91,10 +108,14 @@ namespace BrowserGame.Controllers
             return View(model);
         }
 
+        /// <summary>
+        /// Получает страницу удаления записи о пользователе
+        /// </summary>
+        /// <param name="id">Идентификатор пользователя</param>
         [HttpPost]
         public async Task<ActionResult> Delete(string id)
         {
-            User user = await _userManager.FindByIdAsync(id);
+            UserData user = await _userManager.FindByIdAsync(id);
             if (user != null)
             {
                 IdentityResult result = await _userManager.DeleteAsync(user);
@@ -102,10 +123,14 @@ namespace BrowserGame.Controllers
             return RedirectToAction("Index");
         }
 
+        /// <summary>
+        /// Удаление записи о пользователе
+        /// </summary>
+        /// <param name="id">Идентификатор пользователя</param>
         [HttpGet]
         public async Task<IActionResult> ChangePassword(string id)
         {
-            User user = await _userManager.FindByIdAsync(id);
+            UserData user = await _userManager.FindByIdAsync(id);
             if (user == null)
             {
                 return NotFound();
@@ -122,7 +147,7 @@ namespace BrowserGame.Controllers
         {
             if (ModelState.IsValid)
             {
-                User user = await _userManager.FindByIdAsync(model.Id);
+                UserData user = await _userManager.FindByIdAsync(model.Id);
                 if (user != null)
                 {
                     IdentityResult result =

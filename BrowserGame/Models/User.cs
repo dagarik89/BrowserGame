@@ -1,8 +1,12 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using DataLayer.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace BrowserGame.Models
 {
-    public class User : IdentityUser
+    /// <summary>
+    /// Пользователь
+    /// </summary>
+    public class User : UserData
     {
     }
 }

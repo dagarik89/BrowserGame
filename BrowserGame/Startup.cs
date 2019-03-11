@@ -10,15 +10,18 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using BrowserGame.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using System.IO;
-using BrowserGame.Logger;
-using BrowserGame.Filters;
 using BrowserGame.Models;
 using Microsoft.AspNetCore.Identity.UI.Services;
+using BrowserGame.Services;
+using BrowserGame.Services.Implementation;
+using DataLayer.Data;
+using BusinessLayer.Data;
+using DataLayer.Models;
+using BusinessLayer.Logger;
 
 namespace BrowserGame
 {
@@ -41,12 +44,23 @@ namespace BrowserGame
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-            services.AddEntityFrameworkNpgsql()
+
+            services.AddScoped<IPersonsService, PersonsService>();
+            services.AddScoped<IUserService, UserService>();
+            services.AddDataLibraryCollection(Configuration);
+            services.AddBusinessLibraryCollection();
+
+            /*services.AddEntityFrameworkNpgsql()
                .AddDbContext<ApplicationDbContext>(options =>
                options.UseNpgsql(
-                   Configuration.GetConnectionString("DefaultConnection")));
+                   Configuration.GetConnectionString("DefaultConnection")));*/
             //services.AddIdentity<User, IdentityRole>()      
-            services.AddIdentity<User, IdentityRole>()
+            services.AddIdentity<UserData, IdentityRole>(opts => {
+                opts.Password.RequireNonAlphanumeric = false;   // требуются ли не алфавитно-цифровые символы
+                opts.Password.RequireUppercase = false; // требуются ли символы в верхнем регистре
+                opts.Password.RequireDigit = false; // требуются ли цифры
+                opts.User.RequireUniqueEmail = true;
+            })
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders()
                 .AddDefaultUI(UIFramework.Bootstrap4);

@@ -1,0 +1,22 @@
+﻿@page
+@model AccessDeniedModel
+@{
+    ViewData["Title"] = "Доступ закрыт";
+}
+
+<header>
+    <h1 class="text-danger">@ViewData["Title"]</h1>
+    <h3 class="text-danger">У вас нет доступа к этому ресурсу.</h3>
+</header>
+
+<p> <img src="/img/face_500.png" alt="face">
+    <h5>
+    Через 10 секунд Вы будете перенаправлены на главную страницу. <br>
+    Если этого не происходит, то перейдите самостоятельно:
+    <script>
+        setTimeout(function () { window.location.href = '../../'; }, 10000);
+    </script>
+
+    <a href="../../">BrowserGame</a>
+    </h5>
+</p>

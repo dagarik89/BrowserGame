@@ -1,5 +1,4 @@
 ﻿using System;
-using BrowserGame.Data;
 using BrowserGame.Models;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;

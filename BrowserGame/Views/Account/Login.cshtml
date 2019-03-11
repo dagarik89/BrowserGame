@@ -11,24 +11,34 @@
             <form method="post" asp-controller="Account" asp-action="Login"
                   asp-route-returnUrl="@Model.ReturnUrl">
                 <div asp-validation-summary="ModelOnly"></div>
-                <div>
-                    <label asp-for="Email"></label><br />
-                    <input asp-for="Email" />
+                <div class="input-group">
+                    <!--<label asp-for="Email"></label><br />-->
+                    <span class="input-group-text" id="basic-addon1">@@</span>
+                    <input class="form-control" placeholder="Введите email" aria-describedby="basic-addon1" asp-for="Email" />
                     <span asp-validation-for="Email"></span>
                 </div>
                 <div>
+                    <br />
                     <label asp-for="Password"></label><br />
-                    <input asp-for="Password" />
-                    <span asp-validation-for="Password"></span>
+                    <input class="form-control" placeholder="Введите пароль" asp-for="Password" />
+                    <span asp-validation-for="Password"></span><br />
                 </div>
                 <div>
-                    <label asp-for="RememberMe"></label><br />
-                    <input asp-for="RememberMe" />
+                    <label asp-for="RememberMe"></label>
+                    <input type="checkbox" asp-for="RememberMe" />
                 </div>
-                <div>
-                    <input type="submit" value="Войти" />
+                <div class="btn-group-lg">
+                    <div class="btn-group" role="group">
+                        <input class="btn btn-success" type="submit" value="Войти" />
+                    </div>
+                    <div class="btn-group" role="group">
+                        <a class="btn btn-outline-danger" asp-area="" asp-controller="Account" asp-action="ForgotPassword">Забыли пароль?</a>
+                    </div>
                 </div>
             </form>
+            <br /> 
+                
+            
             <br />
             <form action="\Identity\Account\Login">
                 <button class="btn btn-primary" name="provider">Выбрать другой сервис для входа (Google, Facebook)</button>
