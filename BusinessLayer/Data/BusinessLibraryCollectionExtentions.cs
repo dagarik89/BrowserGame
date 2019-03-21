@@ -1,4 +1,5 @@
 ﻿using BusinessLayer.Services;
+using BusinessLayer.Services.Implementation;
 using DataLayer.Services.Implementation;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -13,6 +14,7 @@ namespace BusinessLayer.Data
         {
             services.AddScoped<IPersonsBusinessService, PersonsBusinessService>();
             services.AddScoped<IUserBusinessService, UserBusinessService>();
+            services.AddScoped<IAdminBusinessService, AdminBusinessService>();
 
             return services;
         }

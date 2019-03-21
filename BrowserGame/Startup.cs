@@ -47,6 +47,7 @@ namespace BrowserGame
 
             services.AddScoped<IPersonsService, PersonsService>();
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IAdminService, AdminService>();
             services.AddDataLibraryCollection(Configuration);
             services.AddBusinessLibraryCollection();
 

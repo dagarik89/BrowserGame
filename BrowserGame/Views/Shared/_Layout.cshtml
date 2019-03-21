@@ -21,7 +21,7 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-light border-bottom box-shadow mb-3">
             <div class="container">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Игра</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
@@ -32,24 +32,24 @@
                     <partial name="_LoginPartial" />
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Главная</a>
+                            <a class="nav-link text-primary" asp-area="" asp-controller="Home" asp-action="Index">Главная</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Конфиденциальность</a>
+                            <a class="nav-link text-primary" asp-area="" asp-controller="Home" asp-action="Privacy">Конфиденциальность</a>
                         </li>
                         @if (SignInManager.IsSignedIn(User))
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Persons" asp-action="Index">Персонаж</a> <!--Добавление в шапке-->
+                                <a class="nav-link text-primary" asp-area="" asp-controller="Persons" asp-action="Index">Персонаж</a> <!--Добавление в шапке-->
                             </li>
                         }
                         @if (User.IsInRole("Admin"))
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Logs">Логи</a> <!--Добавление в шапке-->
+                                <a class="nav-link text-danger" asp-area="" asp-controller="Home" asp-action="Logs">Логи</a> <!--Добавление в шапке-->
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Users" asp-action="Index">Пользователи</a> <!--Добавление в шапке-->
+                                <a class="nav-link text-danger" asp-area="" asp-controller="Users" asp-action="Index">Пользователи</a> <!--Добавление в шапке-->
                             </li>
                         }
                     </ul>

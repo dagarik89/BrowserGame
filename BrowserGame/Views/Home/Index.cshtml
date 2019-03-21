@@ -10,16 +10,20 @@
 <div class="text-center">
     @if (SignInManager.IsSignedIn(User))
     {
-        <h1 class="display-4">@User.Identity.Name<br /><br /></h1>
+        <h1 class="display-4 bg-primary text-light">@User.Identity.Name<br /></h1>
+        <br />
         <h2>Необходимо выбрать персонаж</h2>
+        <div><img src="~/img/cobra.png" alt="Snake" width=35% top></div>
         <form action="\Persons\Index">
             <button class="btn btn-primary">Выбрать</button>
         </form>
     }
     else
     {
-        <h1 class="display-4">Добро пожаловать</h1>
+        <h1 class="display-4 badge-success">Добро пожаловать</h1>
+        <div><img src="~/img/cobra.png" alt="Snake" width=45% top></div>
     }
+
     <!--
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
         -->

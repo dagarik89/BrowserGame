@@ -1,6 +1,7 @@
 ﻿using BusinessLayer.Models;
 using BusinessLayer.Services;
 using DataLayer.Models;
+using DataLayer.Services;
 using Mapster;
 using Microsoft.AspNetCore.Identity;
 using System;
@@ -8,7 +9,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataLayer.Services.Implementation
+namespace BusinessLayer.Services.Implementation
 {
     class UserBusinessService : IUserBusinessService
     {

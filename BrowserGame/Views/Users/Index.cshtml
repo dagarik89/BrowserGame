@@ -3,11 +3,15 @@
     ViewBag.Title = "Список пользователей";
 }
 
-<a asp-action="Create">Добавить пользователя</a> |
-<a asp-controller="Roles" asp-action="Index">Просмотреть роли пользователей</a>
+<p>
+<a class="btn btn-primary" asp-action="Create">Добавить пользователя</a> 
+<a class="btn btn-dark" asp-controller="Roles" asp-action="Index">Просмотреть роли пользователей</a>
+</p>
 
-<table class="table">
+<table class="table table-warning">
+    <thead class="thead-dark">
     <tr><th>Email</th><th></th></tr>
+        </thead>
     @foreach (var user in Model)
     {
         <tr>

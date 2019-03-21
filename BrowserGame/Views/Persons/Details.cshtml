@@ -9,46 +9,46 @@
 <div>
     <h4>Персонаж</h4>
     <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
+    <dl class="row table-warning">
+        <dt class="col-sm-2 table-dark">
             Имя
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Name)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2 table-dark">
             Скорость
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Speed)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2 table-dark">
             Цветовая схема
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Color)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2 table-dark">
             Размер
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Size)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2 table-dark">
             Рекорд
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.MaxPoints)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2 table-dark">
             Попытки
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Attempts)
         </dd>
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.PersonsID">Редактировать</a> |
+    <a class="btn btn-primary" asp-action="Edit" asp-route-id="@Model.PersonsID">Редактировать</a> |
     <a asp-action="Index">Назад</a>
 </div>

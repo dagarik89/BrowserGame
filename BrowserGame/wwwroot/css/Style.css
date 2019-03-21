@@ -11,4 +11,8 @@ button.knopka:hover {
     }
 
 body {
+    /* Margin bottom by footer height */
+    background: url('/img/bg_snake.jpg');
+    background-attachment: fixed;
+    background-position: left;
 }

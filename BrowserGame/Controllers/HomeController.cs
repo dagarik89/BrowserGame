@@ -8,6 +8,9 @@ using BrowserGame.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.Logging;
 using DataLayer.Data;
+using System.IO;
+using BrowserGame.ViewModels;
+using BrowserGame.Services;
 
 namespace BrowserGame.Controllers
 {
@@ -17,14 +20,15 @@ namespace BrowserGame.Controllers
     [Authorize]
     public class HomeController : Controller
     {
-        private readonly ApplicationDbContext _context;
+        //private readonly ApplicationDbContext _context;
         private readonly ILogger _logger;
+        private readonly IAdminService _admin;
 
-
-        public HomeController(ApplicationDbContext context, ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, IAdminService admin)
         {
-            _context = context;
+            //_context = context;
             _logger = logger;
+            _admin = admin;
         }
 
         /// <summary>
@@ -34,7 +38,7 @@ namespace BrowserGame.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            return View();
+            return View("Index");
         }
 
         /// <summary>
@@ -62,7 +66,24 @@ namespace BrowserGame.Controllers
         [HttpGet]
         public IActionResult Logs()
         {
-            return View();
+            LogsViewModel model = _admin.GetLogs();
+            return View(model);
+        }
+
+        /// <summary>
+        /// Получает страницу логов по дате
+        /// </summary>
+        /// <param name="logs">Модель логов</param>
+        [HttpPost]
+        public IActionResult Logs(LogsViewModel logs)
+        {
+            if (ModelState.IsValid)
+            {
+                LogsViewModel model = _admin.GetLogsByDate(logs);
+                return View(model);
+            }
+
+            return View(new LogsViewModel {Date = null, Text = "За указанную дату нет логов!"});
         }
 
         /// <summary>
