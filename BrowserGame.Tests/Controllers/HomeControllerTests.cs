@@ -28,7 +28,7 @@ namespace BrowserGame.Tests
         }
 
         [Test]
-        public void IndexViewResultIsViewResultObject()
+        public void Index_ReturnViewResultObject()
         {
             // Arrange
 
@@ -37,34 +37,12 @@ namespace BrowserGame.Tests
 
             // Assert
             Assert.That(result, Is.TypeOf<ViewResult>());
-        }
-
-        [Test]
-        public void IndexViewNameEqualIndex()
-        {
-            // Arrange
-
-            // Act
-            var result = controller.Index();
-
-            // Assert
+            Assert.NotNull(result as ViewResult);
             Assert.AreEqual("Index", (result as ViewResult).ViewName);
         }
 
         [Test]
-        public void IndexViewResultNotNull()
-        {
-            // Arrange
-
-            // Act
-            var result = controller.Index();
-
-            // Assert
-            Assert.NotNull(result as ViewResult);
-        }
-
-        [Test]
-        public void CanViewLogs()
+        public void Logs_GetDefaultLogs_ReturnViewResult()
         {
             // Arrange
             admin.Setup(m => m.GetLogs()).Returns(
@@ -82,7 +60,7 @@ namespace BrowserGame.Tests
         }
 
         [Test]
-        public void CanViewLogsByDate()
+        public void Logs_GetLogsByDate_ReturnViewResult()
         {
             // Arrange
             LogsViewModel model = new LogsViewModel { Date = "2019-01-01" };
@@ -101,7 +79,7 @@ namespace BrowserGame.Tests
         }
 
         [Test]
-        public void CanViewLogsByDateVerify()
+        public void Logs_GetLogsByDate_VerifyPassed()
         {
             // Arrange
             LogsViewModel model = new LogsViewModel { Date = "2019-01-01" };
@@ -115,7 +93,7 @@ namespace BrowserGame.Tests
         }
 
         [Test]
-        public void CanViewLogsByDateWithInvalidModel()
+        public void Logs_InvalidModel_ReturnErrorModel()
         {
             // Arrange
             //Создание не валидной модели
@@ -132,7 +110,7 @@ namespace BrowserGame.Tests
         }
 
         [Test]
-        public void ErrorReturnsARedirect()
+        public void Error_ReturnARedirect()
         {
             // Arrange
 

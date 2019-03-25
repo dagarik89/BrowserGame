@@ -44,7 +44,7 @@ namespace BrowserGame.Tests
         }
 
         [Test]
-        public async Task EditReturnsRedirectToActionResult()
+        public async Task Edit_RedirectToIndex()
         {
             // Arrange
             EditUserViewModel model = new EditUserViewModel { Id = "id"};
@@ -62,7 +62,7 @@ namespace BrowserGame.Tests
         }
 
         [Test]
-        public async Task DeleteReturnsRedirectToActionResult()
+        public async Task Delete_RedirectToActionResult()
         {
             // Arrange
             _userManagerMock.Setup(m => m.FindByIdAsync("id")).ReturnsAsync(userData);
@@ -78,7 +78,7 @@ namespace BrowserGame.Tests
         }
 
         [Test]
-        public async Task ChangePasswordReturnsRedirectToActionResultWithValidModel()
+        public async Task ChangePassword_ValidModel_RedirectToActionResult()
         {
             // Arrange
             _userManagerMock.Setup(m => m.FindByIdAsync(changePasswordModel.Id)).ReturnsAsync(userData);
@@ -95,7 +95,7 @@ namespace BrowserGame.Tests
         }
 
         [Test]
-        public async Task ChangePasswordReturnsErrorWithUserNotFound()
+        public async Task ChangePassword_UserNotFound_ReturnError()
         {
             // Arrange
 

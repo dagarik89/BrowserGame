@@ -45,7 +45,7 @@ namespace BrowserGame.Tests
         }
 
         [Test]
-        public async Task EditReturnsRedirectToActionResult()
+        public async Task Edit_RedirectToUserList()
         {
             // Arrange
             List<string> listOfRoles = new List<string> { };
@@ -68,7 +68,7 @@ namespace BrowserGame.Tests
         }
 
         [Test]
-        public async Task DeleteReturnsRedirectToActionResult()
+        public async Task Delete_RedirectToIndex()
         {
             // Arrange
             IdentityRole role = new IdentityRole { Id = "roleId"};

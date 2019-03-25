@@ -61,7 +61,7 @@ namespace BrowserGame.Tests
         }
 
         [Test]
-        public async Task IndexReturnsAViewResultWithAListOfPersons()
+        public async Task Index_GetTestPersons_ReturnViewResult()
         {
             // Arrange
             persons.Setup(m => m.GetPersons("User")).ReturnsAsync(GetTestPersons());
@@ -85,10 +85,11 @@ namespace BrowserGame.Tests
             Assert.That(result, Is.TypeOf<ViewResult>());
             Assert.IsAssignableFrom<List<Persons>>((result as ViewResult).Model);
             Assert.AreEqual(GetTestPersons().Count, ((result as ViewResult).Model as List<Persons>).Count);
+            Assert.AreEqual("CCC", ((result as ViewResult).Model as List<Persons>)[2].Name);
         }
 
         [Test]
-        public async Task IndexReturnsPersonsArray()
+        public async Task Index_ReturnPersonsArray()
         {
             // Arrange
 
@@ -101,7 +102,7 @@ namespace BrowserGame.Tests
         }
 
         [Test]
-        public async Task CanViewDetails()
+        public async Task Details_ValidModel_ReturnViewResult()
         {
             // Arrange
             persons.Setup(m => m.GetDetails(100)).ReturnsAsync(new Persons { User = "User", Size=20, Speed=20});
@@ -127,7 +128,7 @@ namespace BrowserGame.Tests
         }
 
         [Test]
-        public async Task DetailsReturnsNotFoundResultWhenIdIsNull()
+        public async Task Details_IdIsNull_ReturnNotFoundResult()
         {
             // Arrange
 
@@ -139,7 +140,7 @@ namespace BrowserGame.Tests
         }
 
         [Test]
-        public async Task DetailsReturnsBadRequestResultWhenPersonsIsNull()
+        public async Task Details_PersonsIsNull_ReturnBadRequestResult()
         {
             // Arrange
 
@@ -151,7 +152,7 @@ namespace BrowserGame.Tests
         }
 
         [Test]
-        public async Task GameReturnsNotFoundResultWhenIdIsNull()
+        public async Task Game_IdIsNull_ReturnNotFoundResult()
         {
             // Arrange
 
@@ -163,7 +164,7 @@ namespace BrowserGame.Tests
         }
 
         [Test]
-        public async Task GameReturnsBadRequestResultWhenPersonsIsNull()
+        public async Task Game_PersonsIsNull_ReturnBadRequestResult()
         {
             // Arrange
 
@@ -175,7 +176,7 @@ namespace BrowserGame.Tests
         }
 
         [Test]
-        public async Task CanViewGame()
+        public async Task Game_ValidModel_ReturnGameViewModel()
         {
             // Arrange
             persons.Setup(m => m.GetDetails(100)).ReturnsAsync(model);
@@ -202,7 +203,7 @@ namespace BrowserGame.Tests
         }
 
         [Test]
-        public async Task CreateReturnsViewResultWithInvalidModel()
+        public async Task Create_InvalidModel_ReturnErrorMessage()
         {
             // Arrange
             Persons modelInvalid = new Persons { Name = "A" };
@@ -220,7 +221,7 @@ namespace BrowserGame.Tests
         }
 
         [Test]
-        public async Task CreateReturnsViewResultWithEqualNames()
+        public async Task Create_EqualNames_ReturnErrorMessage()
         {
             // Arrange
             persons.Setup(m => m.EqualPers(model.Name,"add",null)).Returns(GetTestPersons());
@@ -239,7 +240,7 @@ namespace BrowserGame.Tests
         }
 
         [Test]
-        public async Task CreateReturnsRedirectToActionWithValidModel()
+        public async Task Create_ValidModel_ReturnRedirectToAction()
         {
             // Arrange
 
@@ -252,7 +253,7 @@ namespace BrowserGame.Tests
         }
 
         [Test]
-        public async Task EditReturnsNotFoundResultWhenIdIsNull()
+        public async Task Edit_IdIsNull_ReturnNotFoundResult()
         {
             // Arrange
 
@@ -264,7 +265,7 @@ namespace BrowserGame.Tests
         }
 
         [Test]
-        public async Task EditReturnsBadRequestResultWhenPersonsIsNull()
+        public async Task Edit_PersonsIsNull_ReturnBadRequestResult()
         {
             // Arrange
 
@@ -276,7 +277,7 @@ namespace BrowserGame.Tests
         }
 
         [Test]
-        public async Task EditReturnsViewResultWithEqualNames()
+        public async Task Edit_EqualNames_ReturnErrorMessage()
         {
             // Arrange
             persons.Setup(m => m.EqualPers(model.Name, "update", model.PersonsID)).Returns(GetTestPersons());
@@ -306,7 +307,7 @@ namespace BrowserGame.Tests
         }
 
         [Test]
-        public async Task EditReturnsRedirectToActionWithValidModel()
+        public async Task Edit_ValidModel_ReturnRedirectToAction()
         {
             // Arrange
 
@@ -319,7 +320,7 @@ namespace BrowserGame.Tests
         }
 
         [Test]
-        public async Task DeleteReturnsNotFoundResultWhenIdIsNull()
+        public async Task Delete_IdIsNull_ReturnNotFoundResult()
         {
             // Arrange
 
@@ -331,7 +332,7 @@ namespace BrowserGame.Tests
         }
 
         [Test]
-        public async Task DeleteReturnsBadRequestResultWhenPersonsIsNull()
+        public async Task Delete_PersonsIsNull_ReturnBadRequestResult()
         {
             // Arrange
 
@@ -343,7 +344,7 @@ namespace BrowserGame.Tests
         }
 
         [Test]
-        public async Task DeleteConfirmedReturnsRedirectToAction()
+        public async Task DeleteConfirmed_ReturnRedirectToAction()
         {
             // Arrange
 

@@ -78,7 +78,7 @@ namespace BrowserGame.Tests
         }
 
         [Test]
-        public async Task CanLoginWithValidCredentials()
+        public async Task Login_ValidCredentials_RedirectToIndex()
         {
             // Arrange
             _userManagerMock.Setup(m => m.FindByNameAsync(loginModel.Email)).ReturnsAsync(userData);
@@ -97,7 +97,7 @@ namespace BrowserGame.Tests
         }
 
         [Test]
-        public async Task ConfrimReturnsRedirectToActionResultWithValidModel()
+        public async Task ConfirmEmail_ValidModel_RedirectToActionResult()
         {
             // Arrange
             _userManagerMock.Setup(m => m.FindByIdAsync("userId")).ReturnsAsync(userData);
@@ -113,7 +113,7 @@ namespace BrowserGame.Tests
         }
 
         [Test]
-        public async Task ConfrimReturnsErrorWithInvalidModel()
+        public async Task ConfirmEmail_InvalidModel_ReturnError()
         {
             // Arrange
             _userManagerMock.Setup(m => m.FindByIdAsync("userId")).ReturnsAsync(userData);
@@ -129,7 +129,7 @@ namespace BrowserGame.Tests
         }
 
         [Test]
-        public async Task LoginReturnsErrorWithEmailNotConfirmed()
+        public async Task Login_EmailNotConfirmed_ReturnError()
         {
             // Arrange
             _userManagerMock.Setup(m => m.FindByNameAsync(loginModel.Email)).ReturnsAsync(userData);
@@ -150,7 +150,7 @@ namespace BrowserGame.Tests
         }
 
         [Test]
-        public async Task LoginReturnsErrorWithWrongLoginOrPassword()
+        public async Task Login_WrongLoginOrPassword_ReturnError()
         {
             // Arrange
             _userManagerMock.Setup(m => m.FindByNameAsync(loginModel.Email)).ReturnsAsync(userData);
@@ -174,7 +174,7 @@ namespace BrowserGame.Tests
         }
 
         [Test]
-        public async Task ResetPasswordReturnsViewResultWithValidModel()
+        public async Task ResetPassword_ValidModel_ReturnViewResult()
         {
             // Arrange
             ResetPasswordViewModel resetPasswordModel = new ResetPasswordViewModel

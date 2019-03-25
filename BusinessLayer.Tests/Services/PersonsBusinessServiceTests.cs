@@ -43,7 +43,7 @@ namespace BusinessLayer.Tests
         }
 
         [Test]
-        public void DeletePersonsAsyncReturnsTaskOfBool()
+        public void DeletePersonsAsync_ReturnTaskOfBool()
         {
             // Arrange
 
@@ -56,7 +56,7 @@ namespace BusinessLayer.Tests
         }
 
         [Test]
-        public async Task GetPersonsReturnsListOfPersonsBusinessModel()
+        public async Task GetPersons_ReturnListOfPersonsBusinessModel()
         {
             // Arrange
             personsDataService.Setup(m => m.GetPersons("User")).ReturnsAsync(GetTestPersons());
@@ -72,7 +72,7 @@ namespace BusinessLayer.Tests
         }
 
         [Test]
-        public async Task GetDetailsReturnsPersonsBusinessModel()
+        public async Task GetDetails_ReturnPersonsBusinessModel()
         {
             // Arrange
             personsDataService.Setup(m => m.GetDetails(100)).ReturnsAsync(model);
@@ -87,7 +87,7 @@ namespace BusinessLayer.Tests
         }
 
         [Test]
-        public void EqualPersReturnsListOfPersonsBusinessModel()
+        public void EqualPers_ReturnListOfPersonsBusinessModel()
         {
             // Arrange
             personsDataService.Setup(m => m.EqualPersUpdate("User", 100)).Returns(GetTestPersons());
@@ -103,7 +103,7 @@ namespace BusinessLayer.Tests
         }
 
         [Test]
-        public void GetGameReturnsGameModel()
+        public void GetGame_ReturnGameModel()
         {
             // Arrange
 

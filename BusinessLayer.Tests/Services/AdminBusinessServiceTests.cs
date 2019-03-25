@@ -12,7 +12,7 @@ namespace BusinessLayer.Tests
     public class AdminBusinessServiceTests
     {
         [Test]
-        public void GetLogsByDateReturnsLogsModel()
+        public void GetLogsByDate_ReturnLogsModel()
         {
             // Arrange
             var adminService = new AdminBusinessService();
