@@ -1,15 +1,16 @@
 ﻿using BusinessLayer.Models;
 using BusinessLayer.Services;
 using DataLayer.Models;
+using DataLayer.Services;
 using Mapster;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataLayer.Services.Implementation
+namespace BusinessLayer.Services.Implementation
 {
-    internal class PersonsBusinessService : IPersonsBusinessService
+    public class PersonsBusinessService : IPersonsBusinessService
     {
         private readonly IPersonsDataService personsServices;
 

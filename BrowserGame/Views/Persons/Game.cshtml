@@ -6,12 +6,12 @@
 <body>
     <fieldset>
         <legend>Информация об игре</legend>
-        <div class="display-label"><b>Размер</b></div>
-        <div class="display-field">
+        <div class="col-sm-2 table-dark"><b>Размер</b></div>
+        <div class="col-sm-2 table-warning">
             @Html.DisplayFor(model => model.Size)
         </div>
-        <div class="display-label"><b>Скорость</b></div>
-        <div class="display-field">
+        <div class="col-sm-2 table-dark"><b>Скорость</b></div>
+        <div class="col-sm-2 table-warning">
             @Html.DisplayFor(model => model.Speed)
         </div>
     </fieldset>

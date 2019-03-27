@@ -55,7 +55,7 @@ namespace BrowserGame.Controllers
 
             if (persons == null)
             {
-                return NotFound();
+                return BadRequest();
             }
 
             if (persons.User != HttpContext.User.Identity.Name || persons.User == "Default")
@@ -83,7 +83,7 @@ namespace BrowserGame.Controllers
 
             if (persons == null)
             {
-                return NotFound();
+                return BadRequest();
             }
             
             if (persons.User != HttpContext.User.Identity.Name && persons.User != "Default")
@@ -152,7 +152,7 @@ namespace BrowserGame.Controllers
 
             if (persons == null)
             {
-                return NotFound();
+                return BadRequest();
             }
 
             if (persons.User != HttpContext.User.Identity.Name || persons.User == "Default")
@@ -214,7 +214,7 @@ namespace BrowserGame.Controllers
 
             if (persons == null)
             {
-                return NotFound();
+                return BadRequest();
             }
 
             if (persons.User != HttpContext.User.Identity.Name || persons.User == "Default")

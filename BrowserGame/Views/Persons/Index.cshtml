@@ -7,10 +7,10 @@
 <h1>Персонажи</h1>
 
 <p>
-    <a asp-action="Create">Создать нового персонажа</a>
+    <a class="btn btn-primary" asp-action="Create">Создать новый персонаж</a>
 </p>
-<table class="table">
-    <thead>
+<table class="table table-warning">
+    <thead class="thead-dark">
         <tr>
             <th>
                 Имя
@@ -27,7 +27,7 @@
             <th>
                 Пользователь
             </th>
-            <th></th>
+            <th></th><th></th>
         </tr>
     </thead>
     <tbody>
@@ -56,7 +56,7 @@
                     <button>Выбрать</button>
                 </form>
                 -->
-                <a asp-action="Game" asp-route-id="@item.PersonsID">Выбрать</a> |
+                <a asp-action="Game" asp-route-id="@item.PersonsID">Выбрать</a>
             </td>
 
             @if (count > 1)

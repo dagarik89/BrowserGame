@@ -43,7 +43,10 @@ html {
 }
 
 body {
-  /* Margin bottom by footer height */
+    /* Margin bottom by footer height */
+    background: url('/img/bg_snake.jpg');
+    background-attachment: fixed;
+    background-position: left;
   margin-bottom: 60px;
 }
 .footer {
@@ -54,4 +57,10 @@ body {
   /* Set the fixed height of the footer here */
   height: 60px;
   line-height: 60px; /* Vertically center the text there */
+}
+
+.layer {
+    position: absolute; /* Абсолютное позиционирование */
+    
+    line-height: 1px;
 }

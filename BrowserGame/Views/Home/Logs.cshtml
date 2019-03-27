@@ -1,10 +1,12 @@
-﻿@using System.IO
+﻿@model BrowserGame.ViewModels.LogsViewModel
 
-@{
-    ViewData["Title"] = "Logs";
-}
-@{string file =  $"{Directory.GetCurrentDirectory()}\\logs\\log_{DateTime.Today.ToShortDateString()}.txt";
-}
 <h1>Логи</h1>
-
-file = @file
+<form asp-action="Logs" method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <p>
+        Выберите дату: <input asp-for="Date" type="date">
+        <span asp-validation-for="Date" class="text-danger"></span>
+    </p>
+    <p><input type="submit" class="btn btn-primary" value="Выбрать"></p>
+    <textarea id="area" readonly rows="20" class="bg-secondary text-light form-control">@Model.Text</textarea>
+</form>
