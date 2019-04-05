@@ -85,5 +85,20 @@ namespace BrowserGame.Tests
             Assert.AreEqual("Index", (result as RedirectToActionResult).ActionName);
         }
 
+        [Test]
+        public async Task Create_RedirectToIndex()
+        {
+            // Arrange
+            _roleManagerMock.Setup(m => m.CreateAsync(It.IsAny<IdentityRole>())).ReturnsAsync(IdentityResult.Success);
+
+            RolesController contr = new RolesController(_roleManagerMock.Object, _userManagerMock.Object);
+
+            // Act
+            var result = await contr.Create("role");
+
+            // Assert
+            Assert.AreEqual("Index", (result as RedirectToActionResult).ActionName);
+        }
+
     }
 }

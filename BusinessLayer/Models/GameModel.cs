@@ -29,5 +29,15 @@ namespace BusinessLayer.Models
         /// Размер
         /// </summary>
         public int Size { get; set; }
+
+        /// <summary>
+        /// Рекорд
+        /// </summary>
+        public int MaxPoints { get; set; }
+
+        /// <summary>
+        /// Идентификатор персонажа
+        /// </summary>
+        public int PersonID { get; set; }
     }
 }

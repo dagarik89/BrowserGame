@@ -121,7 +121,9 @@ namespace BusinessLayer.Services.Implementation
                 Speed = persons.Speed,
                 Size = persons.Size,
                 Snake_color = snake_color,
-                Food_color = food_color
+                Food_color = food_color,
+                MaxPoints = persons.MaxPoints,
+                PersonID = persons.PersonsID
             };
 
             return model;

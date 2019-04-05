@@ -3,23 +3,35 @@
     ViewData["Title"] = "Game";
 }
 
-<body>
+<form asp-action="Game" method="post">
+
     <fieldset>
         <legend>Информация об игре</legend>
-        <div class="col-sm-2 table-dark"><b>Размер</b></div>
-        <div class="col-sm-2 table-warning">
-            @Html.DisplayFor(model => model.Size)
-        </div>
-        <div class="col-sm-2 table-dark"><b>Скорость</b></div>
-        <div class="col-sm-2 table-warning">
-            @Html.DisplayFor(model => model.Speed)
-        </div>
+        <dl class="row">
+            <dd class="col-sm-2 table-dark"><b>Размер</b></dd>
+            <dd class="col-sm-2 table-warning">
+                @Html.DisplayFor(model => model.Size)
+            </dd>
+            <dd class="col-sm-2 table-dark"><b>Скорость</b></dd>
+            <dd class="col-sm-2 table-warning">
+                @Html.DisplayFor(model => model.Speed)
+            </dd>
+        </dl>
+
+        <div class="col-sm-2 table-dark"><b>Рекорд</b></div>
+        <input asp-for="MaxPoints" class="col-sm-2 table-warning" id="max_result" type="text">
+        <div class="col-sm-2 table-dark"><b>Текущий результат</b></div>
+        <input class="col-sm-2 table-warning" id="result" type="text" value="0">
+        <input type="submit" class="btn btn-outline-danger btn-sm" value="Сохранить и выйти">
     </fieldset>
+    <input type="hidden" asp-for="PersonID">
     <input id="size" type="text" value="@Model.Size" hidden="hidden">
     <input id="speed" type="text" value="@Model.Speed" hidden="hidden">
     <input id="snake_color" type="text" value="@Model.Snake_color" hidden="hidden">
     <input id="food_color" type="text" value="@Model.Food_color" hidden="hidden">
+
     <br>
     <canvas id="snake" width="810" height="570">HTML 5 не поддерживается</canvas>
     <script src="~/js/game.js"></script>
-</body>
+
+</form>

@@ -123,8 +123,8 @@ namespace BrowserGame.Tests
             var result = await contr.Details(100);
 
             // Assert
-            Assert.That(result, Is.TypeOf<ViewResult>());
-            Assert.AreEqual("User", ((result as ViewResult).Model as Persons).User);
+            Assert.That(result, Is.TypeOf<PartialViewResult>());
+            Assert.AreEqual("User", ((result as PartialViewResult).Model as Persons).User);
         }
 
         [Test]

@@ -63,7 +63,7 @@ namespace BrowserGame.Controllers
                 return RedirectToAction(nameof(Index));
             }
 
-            return View(persons);
+            return PartialView(persons);
         }
 
         // GET: Game
@@ -94,6 +94,27 @@ namespace BrowserGame.Controllers
             GameViewModel model = _pers.GetGame(persons);
 
             return View(model);
+        }
+
+        /// <summary>
+        /// Сохраняет игровой результат
+        /// </summary>
+        /// <param name=""></param>
+        [HttpPost]
+        public async Task<IActionResult> Game(GameViewModel model)
+        {
+            var pers = await _pers.GetDetails(model.PersonID);
+            pers.MaxPoints = model.MaxPoints;
+            
+            try
+            {
+                await _pers.CreatePers(pers, HttpContext.User.Identity.Name, "update");
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                throw;
+            }
+            return RedirectToAction(nameof(Index));
         }
 
         // GET: Persons/Create
