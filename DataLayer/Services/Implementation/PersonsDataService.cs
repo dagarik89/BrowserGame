@@ -33,7 +33,7 @@ namespace DataLayer.Services.Implementation
 
         public async Task<PersonsData> GetDetails(int id)
         {
-            var persons = db.Persons
+            var persons = db.Persons.AsNoTracking()
                 .FirstOrDefaultAsync(m => m.PersonsID == id);
 
             return await persons;

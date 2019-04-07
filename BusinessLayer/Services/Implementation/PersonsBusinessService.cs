@@ -3,6 +3,7 @@ using BusinessLayer.Services;
 using DataLayer.Models;
 using DataLayer.Services;
 using Mapster;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -127,6 +128,25 @@ namespace BusinessLayer.Services.Implementation
             };
 
             return model;
+        }
+
+        public async Task SaveMaxResult(string name, int id, int maxPoints)
+        {
+            var pers = await this.personsServices.GetDetails(id);
+
+            if (maxPoints > pers.MaxPoints)
+            {
+                pers.MaxPoints = maxPoints;
+
+                try
+                {
+                    await this.personsServices.UpdatePers(pers, name);
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    throw;
+                }
+            }
         }
     }
 }

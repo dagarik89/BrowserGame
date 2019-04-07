@@ -49,5 +49,12 @@ namespace BusinessLayer.Services
         /// </summary>
         /// <param name="persons">Персонаж</param>
         GameModel GetGame(PersonsBusiness persons);
+
+        /// <summary>
+        /// Сохраняет игровой результат
+        /// </summary>
+        /// <param name="name">Имя пользователя</param>
+        /// /// <param name="model">Модель игры</param>
+        Task SaveMaxResult(string name, int id, int maxPoints);
     }
 }

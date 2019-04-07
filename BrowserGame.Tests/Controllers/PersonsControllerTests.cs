@@ -152,15 +152,28 @@ namespace BrowserGame.Tests
         }
 
         [Test]
-        public async Task Game_IdIsNull_ReturnNotFoundResult()
+        public async Task Game_SaveMaxResult_ReturnRedirectToActionResult()
         {
             // Arrange
+            GameViewModel model = new GameViewModel { PersonID = 5, MaxPoints = 20, Size = 40, Speed = 40 };
+            controller.ControllerContext = new ControllerContext
+            {
+                HttpContext = new DefaultHttpContext
+                {
+                    User = new ClaimsPrincipal(new ClaimsIdentity(new Claim[]
+                    {
+                        new Claim(ClaimTypes.Name, "User")
+                    }, "someAuthTypeName"))
+                }
+            };
 
             // Act
-            var result = await controller.Game(null);
+            var result = await controller.Game(model);
 
             // Arrange
-            Assert.That(result, Is.TypeOf<NotFoundResult>());
+            persons.Verify(m => m.SaveMaxResult("User", 5, 20));
+            Assert.That(result, Is.TypeOf<RedirectToActionResult>());
+            Assert.AreEqual("Index", (result as RedirectToActionResult).ActionName);
         }
 
         [Test]

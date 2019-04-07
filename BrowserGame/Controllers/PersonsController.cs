@@ -99,21 +99,12 @@ namespace BrowserGame.Controllers
         /// <summary>
         /// Сохраняет игровой результат
         /// </summary>
-        /// <param name=""></param>
+        /// <param name="model">Игровая модель</param>
         [HttpPost]
         public async Task<IActionResult> Game(GameViewModel model)
         {
-            var pers = await _pers.GetDetails(model.PersonID);
-            pers.MaxPoints = model.MaxPoints;
-            
-            try
-            {
-                await _pers.CreatePers(pers, HttpContext.User.Identity.Name, "update");
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                throw;
-            }
+            await _pers.SaveMaxResult(HttpContext.User.Identity.Name, model.PersonID, model.MaxPoints);
+
             return RedirectToAction(nameof(Index));
         }
 

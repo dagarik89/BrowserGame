@@ -53,5 +53,10 @@ namespace BrowserGame.Services.Implementation
             var basePersons = persons.Adapt<PersonsBusiness>();
             return personsData.GetGame(basePersons).Adapt<GameViewModel>();
         }
+
+        public async Task SaveMaxResult(string name, int id, int maxPoints)
+        {
+            await personsData.SaveMaxResult(name, id, maxPoints);
+        }
     }
 }

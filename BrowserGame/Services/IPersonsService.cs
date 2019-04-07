@@ -50,5 +50,12 @@ namespace BrowserGame.Services
         /// </summary>
         /// <param name="persons">Персонаж</param>
         GameViewModel GetGame(Persons persons);
+
+        /// <summary>
+        /// Сохраняет игровой результат
+        /// </summary>
+        /// <param name="name">Имя пользователя</param>
+        /// /// <param name="model">Модель игры</param>
+        Task SaveMaxResult(string name, int id, int maxPoints);
     }
 }

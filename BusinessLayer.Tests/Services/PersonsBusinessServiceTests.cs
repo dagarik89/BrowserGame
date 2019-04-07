@@ -114,5 +114,19 @@ namespace BusinessLayer.Tests
             Assert.AreEqual("green", result.Food_color);
             Assert.That(result, Is.TypeOf<GameModel>());
         }
+
+        [Test]
+        public void SaveMaxResult_ResultMoreThanMaxPoints_UpdatePers()
+        {
+            // Arrange
+            personsDataService.Setup(m => m.GetDetails(5)).ReturnsAsync(model);
+
+            // Act
+            var result = personsService.SaveMaxResult("User", 5, 20);
+
+            // Assert
+            personsDataService.Verify(m => m.UpdatePers(model, "User"));
+            Assert.AreEqual(model.MaxPoints, 20);
+        }
     }
 }
